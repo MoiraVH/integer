@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from quickpass.views import home_view, auth_view, logout_view
+from quickpass.views import home_view, auth_view, logout_view, profile_view, start_view
 
 urlpatterns = [
-    path('', home_view, name='root'),
+    path('', start_view, name='root'),
     path('admin/', admin.site.urls),
     path('login/', auth_view, name='login'),  # ✅ Maneja login y registro
     path('logout/', logout_view, name='logout'),
+    path('start/', start_view, name='start'),
     path('home/', home_view, name='home'),
+    path('profile/', profile_view, name='profile'),
 ]

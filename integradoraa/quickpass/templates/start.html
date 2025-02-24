@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Mi Sitio</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Styles\start.css'%}" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">Mi Sitio</a>
+            </div>
+            <div class="nav-links">
+                <a href="{% url 'login' %}" >Inicio de sesión</a>
+                <a href="{% url 'login' %}" >Registrarse</a>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="intro">
+            <h1>Bienvenido a nuestro sitio</h1>
+            <p>Este es un producto innovador diseñado para mejorar tu experiencia en el mundo digital. Aprende más sobre nuestras características y beneficios.</p>
+        </section>
+        
+        <footer>
+            <div class="footer-content">
+                <p>Contacto: contacto@misitio.com</p>
+                <p>Sobre los creadores: El equipo de Mi Sitio.</p>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

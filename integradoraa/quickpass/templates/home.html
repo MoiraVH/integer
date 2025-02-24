@@ -1,16 +1,48 @@
-
-{% block content %}
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-4">Bienvenido a Integradora</h1>
-    <p class="mb-4">Esta es la página principal de tu aplicación.</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Mi Sitio</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Styles\home.css'%}" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">Mi Sitio</a>
+            </div>
+            <div class="nav-links">
+                <a href="{% url 'login' %}">Logout</a>
+                <a href="{% url 'profile' %}">Perfil</a>
+                <a href="/more-info">Más Información</a>
+            </div>
+        </nav>
+    </header>
     
-    <div class="flex space-x-4">
-        <a href="{% url 'login' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Iniciar Sesión
-        </a>
-        <a href="{% url 'login' %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            Registrarse
-        </a>
-    </div>
-</div>
-{% endblock %}
+    <main>
+        <section class="site-info">
+            <h2>Información del Sitio</h2>
+            <p>Bienvenido a nuestra plataforma. Aquí encontrarás todo lo que necesitas saber sobre nuestros productos y servicios.</p>
+        </section>
+
+        <section class="profile-info">
+            <h2>Mi Perfil</h2>
+            <p>Esta sección está reservada para mostrar la información personal y las configuraciones de tu cuenta.</p>
+        </section>
+
+        <section class="more-info">
+            <h2>Más Información</h2>
+            <p>Aquí puedes encontrar detalles adicionales sobre lo que ofrecemos y cómo utilizamos los datos.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>Contacto: contacto@misitio.com</p>
+            <p>Sobre los creadores: El equipo de Mi Sitio.</p>
+        </div>
+    </footer>
+</body>
+</html>
