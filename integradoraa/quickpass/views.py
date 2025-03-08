@@ -5,7 +5,6 @@ from django.contrib import messages as django_messages
 from .models import UserModel
 
 def auth_view(request):
-    """Manejo de autenticación (Login y Registro en la misma vista)."""
     
     if request.method == "POST":
         if "login_submit" in request.POST:  # Usuario quiere iniciar sesión
@@ -16,7 +15,7 @@ def auth_view(request):
 
             if user:
                 request.session["user_id"] = str(user["_id"])
-                request.session["name"] = user["name"]  # Corregido: "name" en lugar de "ame"
+                request.session["name"] = user["name"]
                 django_messages.success(request, f"Bienvenido {user['name']}!")
                 return redirect('home')
             else:
@@ -42,15 +41,14 @@ def auth_view(request):
                 django_messages.error(request, "La contraseña debe tener al menos 6 caracteres.")
             else:
                 # Guardar usuario en MongoDB
-                user = UserModel(name, email, lastname, location, phone, password)
-            try:
-                user.save()
-            except Exception as e:
-                django_messages.error(request, "Error al guardar el usuario. Inténtalo de nuevo.")
-                print(f"Error al guardar el usuario: {e}")
-
-                django_messages.success(request, "Registro exitoso, ahora inicia sesión.")
-                return redirect("login")
+                try:
+                    user = UserModel(name, email, lastname, location, phone, password)
+                    user.save()
+                    django_messages.success(request, "Registro exitoso, ahora inicia sesión.")
+                    return redirect("login")
+                except Exception as e:
+                    django_messages.error(request, f"Error al guardar el usuario: {e}")
+                    print(f"Error al guardar el usuario: {e}")
 
     return render(request, "login.html")  # Se renderiza la misma plantilla con mensajes
 

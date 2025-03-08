@@ -83,14 +83,6 @@ DATABASES = {
     }
 }
 
-from pymongo import MongoClient
-
-MONGO_CLIENT = MongoClient("mongodb://localhost:27017/")  # Ajusta si es necesario
-MONGO_DB = MONGO_CLIENT["login_db"]
-MONGO_USERS = MONGO_DB["users"]
-MONGO_VEHICULO = MONGO_DB["vehiculos"]
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
