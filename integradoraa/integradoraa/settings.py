@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'quickpass',
-    'djongo', 
 ]
 
 MIDDLEWARE = [
@@ -89,6 +88,7 @@ from pymongo import MongoClient
 MONGO_CLIENT = MongoClient("mongodb://localhost:27017/")  # Ajusta si es necesario
 MONGO_DB = MONGO_CLIENT["login_db"]
 MONGO_USERS = MONGO_DB["users"]
+MONGO_VEHICULO = MONGO_DB["vehiculos"]
 
 
 # Password validation

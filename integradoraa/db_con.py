@@ -1,5 +1,16 @@
-from pymongo import MongoClient
+import pymongo
 
-client = MongoClient("mongodb://localhost:27017/")  # Conexión a MongoDB
-db = client["login_db"]  # Nombre de la base de datos
+url = 'mongodb://localhost:27017'
+client = pymongo.MongoClient(url)
+
+db = client['login_db']
+collection = db['users']
+
+# Check MongoDB connection
+try:
+    client.admin.command('ping')
+    print("Connected to MongoDB successfully.")
+except Exception as e:
+    print(f"Could not connect to MongoDB: {e}")
+
 
