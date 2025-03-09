@@ -1,6 +1,10 @@
-import pymongo
+from pymongo import MongoClient
+from pymongo.server_api import ServerApi  # Asegúrate de que esta línea no cause error
 
-client = pymongo.MongoClient("mongodb://localhost:27017/")
+# Conexión a MongoDB Atlas
+client = MongoClient(
+    "mongodb+srv://lgaxiola117:H4QJA8wJDY1BPCXo@quickpass.3zpme.mongodb.net/?retryWrites=true&w=majority",
+    server_api=ServerApi('1')  # Usa la API correcta
+)
 
-db = client['quickpass_db']
-collection = db['users']
+db = client["users"]
