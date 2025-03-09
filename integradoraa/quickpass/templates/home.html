@@ -1,48 +1,288 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Mi Sitio</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'Styles\home.css'%}" />
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --danger-color: #e74c3c;
+            --success-color: #2ecc71;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        
+        .metric {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .metric-label {
+            margin-left: 10px;
+            color: #666;
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .status-active {
+            background-color: var(--success-color);
+        }
+        
+        .status-warning {
+            background-color: var(--accent-color);
+        }
+        
+        .status-inactive {
+            background-color: var(--danger-color);
+        }
+        
+        .chart-container {
+            height: 250px;
+            margin-top: 20px;
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .price-form {
+            margin-top: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">
-                <a href="/">Mi Sitio</a>
+        <div class="header-container">
+            <div class="logo-section">
+                <h1>Bienvenido a Quick-Pass caseta #X</h1>
+                <p>Sistema de administración de casetas de peaje</p>
             </div>
-            <div class="nav-links">
-                <a href="{% url 'login' %}">Logout</a>
-                <a href="{% url 'profile' %}">Perfil</a>
-                <a href="/more-info">Más Información</a>
+            <div class="user-section">
+                <div class="user-profile">
+                    <span class="username">Admin</span>
+                    <div class="dropdown">
+                        <div class="dropdown-menu">
+                            <a href="#perfil">Mi Perfil</a>
+                            <a href="#configuracion">Configuración</a>
+                            <a href="#logout" class="logout-link">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </nav>
+        </div>
     </header>
     
-    <main>
-        <section class="site-info">
-            <h2>Información del Sitio</h2>
-            <p>Bienvenido a nuestra plataforma. Aquí encontrarás todo lo que necesitas saber sobre nuestros productos y servicios.</p>
-        </section>
-
-        <section class="profile-info">
-            <h2>Mi Perfil</h2>
-            <p>Esta sección está reservada para mostrar la información personal y las configuraciones de tu cuenta.</p>
-        </section>
-
-        <section class="more-info">
-            <h2>Más Información</h2>
-            <p>Aquí puedes encontrar detalles adicionales sobre lo que ofrecemos y cómo utilizamos los datos.</p>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <p>Contacto: contacto@misitio.com</p>
-            <p>Sobre los creadores: El equipo de Mi Sitio.</p>
+    <div class="container">
+        <div class="dashboard">
+            <div class="card">
+                <h2>Ganancias caseta #X</h2>
+                <div class="metric">
+                    <div class="metric-value"></div> 
+                    <div class="metric-label">Este mes</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">$3,250</div>
+                    <div class="metric-label">Hoy</div>
+                </div>
+                <div class="chart-container">
+                    <img src="/api/placeholder/350/200" alt="Gráfico de ganancias" />
+                </div>
+                <button>Ver reporte detallado</button>
+            </div>
+            
+            <div class="card">
+                <h2>Reportes y estadísticas</h2>
+                <div class="metric">
+                    <div class="metric-value">1,250</div>
+                    <div class="metric-label">Vehículos hoy</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">32,467</div>
+                    <div class="metric-label">Vehículos este mes</div>
+                </div>
+                <div class="chart-container">
+                    <img src="/api/placeholder/350/200" alt="Gráfico de tráfico" />
+                </div>
+                <button>Generar reporte</button>
+            </div>
+            
+            <div class="card">
+                <h2>Estado de la caseta #X</h2>
+                <div class="status">
+                    <div class="status-indicator status-active"></div>
+                    <div>Sistema operativo</div>
+                </div>
+                <div class="status">
+                    <div class="status-indicator status-active"></div>
+                    <div>Conexión a la red</div>
+                </div>
+                <div class="status">
+                    <div class="status-indicator status-active"></div>
+                    <div>Lector QR</div>
+                </div>
+                <div class="status">
+                    <div class="status-indicator status-active"></div>
+                    <div>Camara</div>
+                </div>
+                <button>Ver diagnóstico completo</button>
+            </div>
+            
+            <div class="card">
+                <h2>Modificar precios caseta</h2>
+                <form class="price-form">
+                    <div class="form-group">
+                        <label for="car-price">Automóvil</label>
+                        <input type="number" id="car-price" value="50.00" min="0" step="0.50">
+                    </div>
+                    <div class="form-group">
+                        <label for="bus-price">Autobús</label>
+                        <input type="number" id="bus-price" value="120.00" min="0" step="0.50">
+                    </div>
+                    <div class="form-group">
+                        <label for="truck-price">Camión</label>
+                        <input type="number" id="truck-price" value="150.00" min="0" step="0.50">
+                    </div>
+                    <div class="form-group">
+                        <label for="motorcycle-price">Motocicleta</label>
+                        <input type="number" id="motorcycle-price" value="25.00" min="0" step="0.50">
+                    </div>
+                    <button type="submit" class="btn-success">Actualizar precios</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h2>Acciones rápidas</h2>
+                <button style="width: 100%; margin-bottom: 10px;">Imprimir reporte diario</button>
+                <button style="width: 100%; margin-bottom: 10px;">Solicitar mantenimiento</button>
+                <button style="width: 100%; margin-bottom: 10px;">Notificar recolección de efectivo</button>
+                <button style="width: 100%; margin-bottom: 10px;">Cerrar turno</button>
+                <button style="width: 100%; background-color: var(--danger-color);">Reportar emergencia</button>
+            </div>
         </div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Quick-Pass Sistema de Gestión de Casetas. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
