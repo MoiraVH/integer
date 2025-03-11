@@ -169,9 +169,22 @@
             }
         }
     </style>
+    {% load static %}
+    <link rel="icon" href="{% static 'images\logo.png'%}">
 </head>
 <body>
     <header>
+        <nav>
+            <div class="logo">
+                <a href="/">Mi Sitio</a>
+            </div>
+            <div class="nav-links">
+                <a href="{% url 'login' %}" >Inicio de sesión</a>
+                <a href="{% url 'login' %}" >Registrarse</a>
+            </div>
+        </nav>
+    </header>
+
         <div class="header-container">
             <div class="logo-section">
                 <h1>Bienvenido a Quick-Pass caseta #X</h1>
@@ -190,7 +203,6 @@
                 </div>
             </div>
         </div>
-    </header>
     
     <div class="container">
         <div class="dashboard">

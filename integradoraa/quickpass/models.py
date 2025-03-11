@@ -2,6 +2,7 @@ from django.db import models
 from db_con import db
 from django.contrib.auth.hashers import make_password, check_password
 from django.core.exceptions import ValidationError
+from secrets import token_urlsafe
 from django.core.validators import validate_email
 
 user_collection = db['users']

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from quickpass.views import home_view, auth_view, logout_view, profile_admin_view, profile_view, start_view
+from quickpass.views import about_us_view, home_view, auth_view, logout_view, profile_admin_view, profile_view, start_view
 
 urlpatterns = [
     path('', start_view, name='root'),
@@ -27,4 +27,5 @@ urlpatterns = [
     path('home/', home_view, name='home'),
     path('profile/', profile_view, name='profile'),
     path('profile_admin/', profile_admin_view, name='profile_admin'),
+    path('about_us/', about_us_view, name='about_us'), 
 ]

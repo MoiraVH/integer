@@ -3,35 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Mi Sitio</title>
+    <title>QuickPass - Tu Acceso Rápido</title>
     {% load static %}
+    <link rel="icon" href="{% static 'images/logo.png' %}">
     <link rel="stylesheet" href="{% static 'Styles\start.css'%}" />
+    <style>
+        /* Hero section con imagen de fondo */
+        .hero {
+            background-image: url("{% static 'images/carretera.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            position: relative;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Overlay oscuro para mejorar legibilidad del texto */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="/">Mi Sitio</a>
-            </div>
-            <div class="nav-links">
-                <a href="{% url 'login' %}" >Inicio de sesión</a>
-                <a href="{% url 'login' %}" >Registrarse</a>
-            </div>
-        </nav>
-    </header>
-    
-    <main>
-        <section class="intro">
-            <h1>Bienvenido a nuestro sitio</h1>
-            <p>Este es un producto innovador diseñado para mejorar tu experiencia en el mundo digital. Aprende más sobre nuestras características y beneficios.</p>
-        </section>
+    <div class="hero">
+        <header>
+            <nav >
+                <div class="logo">
+                    <a href="/">
+                        <img class="logoo" src="{% static 'images/logo.png' %}" alt="QuickPass Logo">
+                    </a>
+                    <a href="/">QuickPass</a>
+                </div>
+                <div class="nav-links">
+                    <a href="{% url 'about_us' %}">Nosotros</a>
+                    <a href="#">Atención</a>
+                    <a href="{% url 'login' %}">Iniciar Sesión</a>
+                    <a href="{% url 'login' %}">Registrarse</a>
+                </div>
+            </nav>
+        </header>
         
-        <footer>
-            <div class="footer-content">
-                <p>Contacto: contacto@misitio.com</p>
-                <p>Sobre los creadores: El equipo de Mi Sitio.</p>
+        <div class="hero-content">
+            <h1>Agilizamos tu acceso</h1>
+            <p>para que disfrutes el recorrido</p>
+            
+            <div class="additional-info">
+                <p>Con QuickPass olvidate de las largas filas de pago y obtén un acceso rápido a las autopistas del estado.</p>
             </div>
-        </footer>
-    </main>
+            
+            <p>Empieza con <strong>QuickPass</strong> hoy.</p>
+            
+            <div class="btn-container">
+                <a href="#" class="btn">Adquirir aplicación</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="promo-section">
+        <div class="promo-card">
+            <div class="promo-header">AAAAA</div>
+            <h3>AAAAA</h3>
+            <p>aaaaaaaaaaaaaaaa</p>
+        </div>
+        
+        <div class="promo-card">
+            <div class="news-header">AAAAA</div>
+            <h3>AAAAA</h3>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </div>
+    
+    <div class="info-section">
+        <h2>Una solución a tu medida</h2>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <img src="{% static 'images/icons/carretera.png' %}" alt="M">
+                </div>
+                <h3>Misión</h3>
+                <p>aaaaaaaaaaaaaa</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <img src="{% static 'images/icons/urbano.png' %}" alt="V">
+                </div>
+                <h3>Visión</h3>
+                <p>aaaaaaaaaaaa</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <img src="{% static 'images/icons/estacionamiento.png' %}" alt="v">
+                </div>
+                <h3>Valores</h3>
+                <p>aaaaaaaaaaaaaaa</p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>Contacto: contacto@quickpass.com</p>
+            <p>© 2025 QuickPass - Todos los derechos reservados</p>
+        </div>
+    </footer>
 </body>
 </html>

@@ -2,21 +2,41 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="with=device-widht, initial.scale=1.0">
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-        <link href="'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
         {% load static %}
+        <link rel="icon" href="{% static 'images\logo.png'%}">
         <link rel="stylesheet" href="{% static 'Styles\styles.css'%}" />
         <title>Login Page | QuickPass</title>
+        
     </head>
 
     <body>
+        <header>
+            <nav>
+                <div class="nav-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="QuickPass Logo">
+                    <a href="/">QuickPass</a>
+                </div>
+                <div class="nav-links">
+                    <a href="/">Inicio</a>
+                    <a href="#">Servicios</a>
+                    <a href="#">Acerca de</a>
+                    <a href="#">Contacto</a>
+                    <div class="profile-icon">
+                        <img src="{% static 'images/user-icon.png' %}" alt="Perfil">
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
         <div class="container" id="container">
             <div class="form-container sign-up">
                 <form method="POST" action="{% url 'login' %}">
                     {% csrf_token %}
                     <h1>Create Account</h1>
-                    <div class="social.icons"> 
+                    <div class="social-icons"> 
                         <!--social images-->
                     </div>
                     <input type="text" id="name" name="name" placeholder="First name">
@@ -34,7 +54,7 @@
                 <form method="POST" action="{% url 'login' %}">
                     {% csrf_token %}
                     <h1>Sign in</h1>
-                    <div class="social.icons">
+                    <div class="social-icons">
                         <!--social images-->
                     </div>
                     <input type="text" id="email" name="email" placeholder="Email">
@@ -47,23 +67,24 @@
             <div class="toggle-container">
                 <div class="toggle">
                     <div class="toggle-panel toggle-left">
-                        <img src="{% static 'images\logo.png'%}" alt="logo">
+                        <img src="{% static 'images/logo.png' %}" alt="logo">
                         <h1>QUICKPASS</h1>
-                        <p>idk a forkin text</p>
+                        <p>Su acceso rápido y seguro a todas las vías</p>
                         <h2>WELCOME BACK</h2>
                         <button class="hidden" id="login">Sign in</button>
                     </div>
                     <div class="toggle-panel toggle-right">
-                        <img src="{% static 'images\logo.png'%}" alt="logo">
+                        <img src="{% static 'images/logo.png' %}" alt="logo">
                         <h1>QUICKPASS</h1>
-                        <p>idk a forkin text</p>
-                        <h2>HELLOOOO</h2>
+                        <p>Su acceso rápido y seguro a todas las vías</p>
+                        <h2>HELLO, FRIEND!</h2>
                         <button class="hidden" id="register">Sign up</button>
                     </div>
                 </div>
             </div>
         </div>
+        
         {% load static %}
-        <script src="{% static 'Styles\style.js'%}"></script>
+        <script src="{% static 'Styles/style.js' %}"></script>
     </body>
-</html>
+    </html>

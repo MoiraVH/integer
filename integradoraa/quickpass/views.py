@@ -21,7 +21,7 @@ def auth_view(request):
             else:
                 django_messages.error(request, "Credenciales incorrectas.")
 
-        elif "register_submit" in request.POST:  # Usuario quiere registrarse
+        elif "register_submit" in request.POST:  # cUsuario quiere registrarse
             name = request.POST.get("name").strip()
             lastname = request.POST.get("lastname").strip()
             email = request.POST.get("email").strip()
@@ -70,3 +70,6 @@ def profile_view(request):
 
 def profile_admin_view(request):
     return render(request, "profile_admin.html")
+
+def about_us_view(request):
+    return render(request, "about_us.html")
