@@ -8,7 +8,18 @@
         {% load static %}
         <link rel="icon" href="{% static 'images\logo.png'%}">
         <link rel="stylesheet" href="{% static 'Styles\styles.css'%}" />
+        <link rel="stylesheet" href="{% static 'Styles\nav.css'%}" />
         <title>Login Page | QuickPass</title>
+
+        <style>
+            body {
+            background-image: url("{% static 'images/carretera.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        
+        </style>
         
     </head>
 
@@ -21,21 +32,17 @@
                 </div>
                 <div class="nav-links">
                     <a href="/">Inicio</a>
-                    <a href="#">Servicios</a>
                     <a href="#">Acerca de</a>
-                    <a href="#">Contacto</a>
-                    <div class="profile-icon">
-                        <img src="{% static 'images/user-icon.png' %}" alt="Perfil">
-                    </div>
                 </div>
             </nav>
         </header>
-        
+
         <div class="container" id="container">
             <div class="form-container sign-up">
                 <form method="POST" action="{% url 'login' %}">
                     {% csrf_token %}
                     <h1>Create Account</h1>
+                    
                     <div class="social-icons"> 
                         <!--social images-->
                     </div>
@@ -82,7 +89,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>   
         
         {% load static %}
         <script src="{% static 'Styles/style.js' %}"></script>

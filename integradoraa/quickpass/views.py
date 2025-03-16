@@ -2,26 +2,29 @@ import re
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib import messages as django_messages
+from .models import VALID_ROLES, UserModel
+
+from django.shortcuts import render, redirect
+from django.contrib import messages as django_messages
 from .models import UserModel
 
 def auth_view(request):
-    
     if request.method == "POST":
-        if "login_submit" in request.POST:  # Usuario quiere iniciar sesión
+        if "login_submit" in request.POST:  # Inicio de sesión
             email = request.POST.get("email").strip()
             password = request.POST.get("password")
 
             user = UserModel.check_credentials(email, password)
-
             if user:
                 request.session["user_id"] = str(user["_id"])
                 request.session["name"] = user["name"]
+                request.session["role"] = user["role"]  # Guardar el rol en la sesión
                 django_messages.success(request, f"Bienvenido {user['name']}!")
                 return redirect('home')
             else:
                 django_messages.error(request, "Credenciales incorrectas.")
 
-        elif "register_submit" in request.POST:  # cUsuario quiere registrarse
+        elif "register_submit" in request.POST:  # Registro
             name = request.POST.get("name").strip()
             lastname = request.POST.get("lastname").strip()
             email = request.POST.get("email").strip()
@@ -29,6 +32,7 @@ def auth_view(request):
             phone = request.POST.get("phone").strip()
             password = request.POST.get("password")
             confirm_password = request.POST.get("confirm_password")
+            # role = request.POST.get("role", "user")  # Se obtiene el rol (por defecto "user")
 
             # Validaciones
             if not name or not email or not password:
@@ -39,18 +43,22 @@ def auth_view(request):
                 django_messages.error(request, "Las contraseñas no coinciden.")
             elif len(password) < 6:
                 django_messages.error(request, "La contraseña debe tener al menos 6 caracteres.")
+            # elif role not in VALID_ROLES:
+            #     django_messages.error(request, "Rol inválido.")
             else:
-                # Guardar usuario en MongoDB
-                try:
-                    user = UserModel(name, email, lastname, location, phone, password)
-                    user.save()
-                    django_messages.success(request, "Registro exitoso, ahora inicia sesión.")
-                    return redirect("login")
-                except Exception as e:
-                    django_messages.error(request, f"Error al guardar el usuario: {e}")
-                    print(f"Error al guardar el usuario: {e}")
+                # Solo un administrador puede crear workers o admins
+            #     if role in ["worker", "admin"] and request.session.get("role") != "admin":
+            #         django_messages.error(request, "No tienes permisos para asignar este rol.")
+            #     else:
+                    try:
+                        user = UserModel(name, email, lastname, location, phone, password, role)
+                        user.save()
+                        django_messages.success(request, "Registro exitoso, ahora inicia sesión.")
+                        return redirect("login")
+                    except Exception as e:
+                        django_messages.error(request, f"Error al guardar el usuario: {e}")
 
-    return render(request, "login.html")  # Se renderiza la misma plantilla con mensajes
+    return render(request, "login.html")  # Renderizar plantilla de login con mensajes
 
 def logout_view(request):
     """Cierra la sesión del usuario."""
@@ -73,3 +81,6 @@ def profile_admin_view(request):
 
 def about_us_view(request):
     return render(request, "about_us.html")
+
+def admin_dashboard_view(request):
+    return render(request, "admin_dashboard.html")
