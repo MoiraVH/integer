@@ -1,97 +1,98 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="with=device-width, initial-scale=1.0">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
-        {% load static %}
-        <link rel="icon" href="{% static 'images\logo.png'%}">
-        <link rel="stylesheet" href="{% static 'Styles\styles.css'%}" />
-        <link rel="stylesheet" href="{% static 'Styles\nav.css'%}" />
-        <title>Login Page | QuickPass</title>
+{% load static %}
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="with=device-width, initial-scale=1.0">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
+            <link rel="icon" href="{% static 'images\logo.png'%}">
+            <link rel="stylesheet" href="{% static 'Styles\styles.css'%}" />
+            <link rel="stylesheet" href="{% static 'Styles\nav.css'%}" />
+            <title>Login Page | QuickPass</title>
 
-        <style>
-            body {
-            background-image: url("{% static 'images/carretera.jpg' %}");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            }
-        
-        </style>
-        
-    </head>
+            <style>
+                body {
+                background-image: url("{% static 'images/carretera.jpg' %}");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                }
+            
+            </style>
+            
+        </head>
 
-    <body>
-        <header>
-            <nav>
-                <div class="nav-logo">
-                    <img src="{% static 'images/logo.png' %}" alt="QuickPass Logo">
-                    <a href="/">QuickPass</a>
-                </div>
-                <div class="nav-links">
-                    <a href="/">Inicio</a>
-                    <a href="#">Acerca de</a>
-                </div>
-            </nav>
-        </header>
+        <body>
+            <header>
+                <nav>
+                    <div class="nav-logo">
+                        <img src="{% static 'images/logo.png' %}" alt="QuickPass Logo">
+                        <a href="/">QuickPass</a>
+                    </div>
+                    <div class="nav-links">
+                        <a href="/">Inicio</a>
+                        <a href="#">Acerca de</a>
+                    </div>
+                </nav>
+            </header>
 
-        <div class="container" id="container">
-            <div class="form-container sign-up">
-                <form method="POST" action="{% url 'login' %}">
-                    {% csrf_token %}
-                    <h1>Create Account</h1>
-                    
-                    <div class="social-icons"> 
-                        <!--social images-->
-                    </div>
-                    <input type="text" id="name" name="name" placeholder="First name">
-                    <input type="text" id="lastname" name="lastname" placeholder="Last name">
-                    <input type="email" id="email" name="email" placeholder="Email">
-                    <input type="text" id="phone" name="phone" placeholder="Phone number">
-                    <input type="text" id="location" name="location" placeholder="Location of residence">
-                    <input type="password" id="password" name="password" placeholder="Password">
-                    <input type="password" id="confirmpass" name="confirm_password" placeholder="Confirm password">
-                    <input type="hidden" name="register_submit" value="1">  <!-- Identificador de registro -->
-                    <button type="submit">Sign up</button>
-                </form>
-            </div>
-            <div class="form-container sign-in">
-                <form method="POST" action="{% url 'login' %}">
-                    {% csrf_token %}
-                    <h1>Sign in</h1>
-                    <div class="social-icons">
-                        <!--social images-->
-                    </div>
-                    <input type="text" id="email" name="email" placeholder="Email">
-                    <input type="password" id="pass" name="password" placeholder="Password">
-                    <a href="#">Forgot your password?</a>
-                    <input type="hidden" name="login_submit" value="1">  <!-- Identificador de login -->
-                    <button type="submit">Sign in</button>
-                </form>
-            </div>
-            <div class="toggle-container">
-                <div class="toggle">
-                    <div class="toggle-panel toggle-left">
-                        <img src="{% static 'images/logo.png' %}" alt="logo">
-                        <h1>QUICKPASS</h1>
-                        <p>Su acceso rápido y seguro a todas las vías</p>
-                        <h2>WELCOME BACK</h2>
-                        <button class="hidden" id="login">Sign in</button>
-                    </div>
-                    <div class="toggle-panel toggle-right">
-                        <img src="{% static 'images/logo.png' %}" alt="logo">
-                        <h1>QUICKPASS</h1>
-                        <p>Su acceso rápido y seguro a todas las vías</p>
-                        <h2>HELLO, FRIEND!</h2>
-                        <button class="hidden" id="register">Sign up</button>
+        <main>
+            <div class="container" id="container">
+                <div class="form-container sign-up">
+                    <form method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <h1>Create Account</h1>
+                        
+                        <div class="social-icons"> 
+                            <!--social images-->
+                        </div>
+                        <input type="text" id="name" name="name" placeholder="First name">
+                        <input type="text" id="lastname" name="lastname" placeholder="Last name">
+                        <input type="email" id="email" name="email" placeholder="Email">
+                        <input type="text" id="phone" name="phone" placeholder="Phone number">
+                        <input type="text" id="location" name="location" placeholder="Location of residence">
+                        <input type="password" id="password" name="password" placeholder="Password">
+                        <input type="password" id="confirmpass" name="confirm_password" placeholder="Confirm password">
+                        <input type="hidden" name="register_submit" value="1">  <!-- Identificador de registro -->
+                        <button type="submit">Sign up</button>
+                    </form>
+                </div>
+                <div class="form-container sign-in">
+                    <form method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <h1>Sign in</h1>
+                        <div class="social-icons">
+                            <!--social images-->
+                        </div>
+                        <input type="text" id="email" name="email" placeholder="Email">
+                        <input type="password" id="pass" name="password" placeholder="Password">
+                        <a href="#">Forgot your password?</a>
+                        <input type="hidden" name="login_submit" value="1">  <!-- Identificador de login -->
+                        <button type="submit">Sign in</button>
+                    </form>
+                </div>
+                <div class="toggle-container">
+                    <div class="toggle">
+                        <div class="toggle-panel toggle-left">
+                            <img src="{% static 'images/logo.png' %}" alt="logo">
+                            <h1>QUICKPASS</h1>
+                            <p>Su acceso rápido y seguro a todas las vías</p>
+                            <h2>WELCOME BACK</h2>
+                            <button class="hidden" id="login">Sign in</button>
+                        </div>
+                        <div class="toggle-panel toggle-right">
+                            <img src="{% static 'images/logo.png' %}" alt="logo">
+                            <h1>QUICKPASS</h1>
+                            <p>Su acceso rápido y seguro a todas las vías</p>
+                            <h2>HELLO, FRIEND!</h2>
+                            <button class="hidden" id="register">Sign up</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>   
-        
-        {% load static %}
+            </div>    
+        </main>
+            
         <script src="{% static 'Styles/style.js' %}"></script>
-    </body>
-    </html>
+        </body>
+        </html>

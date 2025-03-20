@@ -4,13 +4,11 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 
 # Conexión a la colección de usuarios en MongoDB
-user_collection = db['users']
+user_collection = db['casetas']
 
-# Definir los roles permitidos
-VALID_ROLES = {"user", "worker", "admin"}
 
 class UserModel:
-    def __init__(self, name, email, lastname, location, phone, password, role="user"):
+    def __init__(self, name, email, lastname, location, phone, password):
         self.name = name
         self.lastname = lastname
         self.email = email
@@ -32,10 +30,16 @@ class UserModel:
                 "phone": self.phone,
                 "email": self.email,
                 "password": self.password,
-                # "role": self.role  # Guardamos el rol
             })
+
         except Exception as e:
             raise Exception(f"Error al guardar el usuario en MongoDB: {e}")
+    
+    @staticmethod
+    def update_user(self):
+        """Actualiza el usuario en MongoDB."""
+        
+
 
     @staticmethod
     def get_user_by_email(email):
@@ -49,11 +53,4 @@ class UserModel:
         if user and check_password(password, user["password"]):
             return user
         return None
-
-    # @staticmethod
-    # def get_role(email):
-    #     """Obtiene el rol de un usuario por su email."""
-    #     user = UserModel.get_user_by_email(email)
-    #     return user["role"] if user else None
-    
 

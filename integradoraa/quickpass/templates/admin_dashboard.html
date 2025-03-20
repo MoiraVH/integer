@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <head>
     
@@ -5,7 +6,6 @@
     <meta name="viewport" content="with=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
-    {% load static %}
     <link rel="icon" href="{% static 'images\logo.png'%}">
     <link rel="stylesheet" href="{% static 'Styles\admin.css'%}" />
     <link rel="stylesheet" href="{% static 'Styles/nav.css'%}">
@@ -13,149 +13,140 @@
 </head>
 <body>
 
-    <div>
-        <header>
-            <nav>
-                <div class="nav-logo">
-                    <img src="{% static 'images/logo.png' %}" alt="QuickPass Logo">
-                    <a href="/">QuickPass</a>
+    <header>
+        <nav>
+            <div class="nav-logo" style=" align-items: start;">
+                <img src="{% static 'images/logo.png' %}" alt="QuickPass Logo">
+                <a href="/">QuickPass</a>
+            </div>
+
+            <div>
+                <ul class="menu_links">
+
+                    <li class="menu_item  menu_item--show">
+                        <a href="#" class="menu_link">Acciones rápidas <img src="{% static 'assets/arrow.svg' %}" class="menu_arrow"> </a>
+                        
+                        <ul class="menu_nesting">
+                            <li class="menu_inside">
+                                <a href="#" class="menu_link menu_link--inside">Imprimir reporte diario</a>
+                            </li>
+                            <li class="menu_inside">
+                                <a href="#" class="menu_link menu_link--inside">Solicitar mantenimiento</a>
+                            </li>
+                            <li class="menu_inside">
+                                <a href="#" class="menu_link menu_link--inside">Notificar recolleción de pago</a>
+                            </li>
+                            <li class="menu_inside">
+                                <a href="#" class="menu_link menu_link--inside">Cerrar turno</a>
+                            </li>
+                            <li class="menu_inside">
+                                <a href="#" class="menu_link menu_link--inside" style="color: red;">Reporte de emergencia</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul> 
+            </div>
+
+
+            <div>
+                <ul class="menu_links">
+                    <li class="menu_item  menu_item--show">
+                        <a href="#" class="menu_link">Modificar Precios de casetas<img src="{% static 'assets/arrow.svg' %}" class="menu_arrow"> </a>
+                        
+                        <ul class="menu_nesting">
+                            <li class="menu_inside">
+                                <a href="#" class="menu_link menu_link--inside">Motocicleta</a>
+                                <input type="number" id="motorcycle-price" value="25.00" min="0" step="0.50">
+                            </li>
+                            <li class="menu_inside">
+                                <a href="#" class="menu_link menu_link--inside">Automóvil</a>
+                                <input type="number" id="car-price" value="120.00" min="0" step="0.50">
+                            </li>
+                            <li class="menu_inside">
+                                <a href="#" class="menu_link menu_link--inside">Camioneta</a>
+                                <input type="number" id="truck-price" value="120.00" min="0" step="0.50">
+                            </li>
+                            <li class="menu_inside">
+                                <a href="#" class="menu_link menu_link--inside">Autobús</a>
+                                <input type="number" id="bus-price" value="150.00" min="0" step="0.50">
+                            </li>
+                        </ul>
+                    </li>
+                </ul> 
+            </div>
+
+            <div class="nav-links">
+                <a href="/">Inicio</a>
+                <a href="#">Servicios</a>
+                <a href="#">Acerca de</a>
+                <a href="#">Contacto</a>
+                <div class="profile-icon">
+                    <img src="{% static 'images/user-icon.png' %}" alt="Perfil">
                 </div>
+                
+                <a href="{% url 'profile_admin' %}">Perfil</a>
+            </div>
+        </nav>
+    </header>
 
-                <div>
-                    <ul class="menu_links">
-    
-                        <li class="menu_item  menu_item--show">
-                            <a href="#" class="menu_link">Acciones rápidas <img src="{% static 'assets/arrow.svg' %}" class="menu_arrow"> </a>
-                            
-                            <ul class="menu_nesting">
-                                <li class="menu_inside">
-                                    <a href="#" class="menu_link menu_link--inside">Imprimir reporte diario</a>
-                                </li>
-                                <li class="menu_inside">
-                                    <a href="#" class="menu_link menu_link--inside">Solicitar mantenimiento</a>
-                                </li>
-                                <li class="menu_inside">
-                                    <a href="#" class="menu_link menu_link--inside">Notificar recolleción de pago</a>
-                                </li>
-                                <li class="menu_inside">
-                                    <a href="#" class="menu_link menu_link--inside">Cerrar turno</a>
-                                </li>
-                                <li class="menu_inside">
-                                    <a href="#" class="menu_link menu_link--inside" style="color: red;">Reporte de emergencia</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul> 
-                </div>
+    <main>
+        <div class="head_container">
+            <h1>Bienvenido a Quick-Pass caseta #X</h1>
+            <p>Sistema de administración de casetas de peaje</p>
+        </div>
 
-
-                <div>
-                    <ul class="menu_links">
-                        <li class="menu_item  menu_item--show">
-                            <a href="#" class="menu_link">Modificar Precios de casetas<img src="{% static 'assets/arrow.svg' %}" class="menu_arrow"> </a>
-                            
-                            <ul class="menu_nesting">
-                                <li class="menu_inside">
-                                    <a href="#" class="menu_link menu_link--inside">Motocicleta</a>
-                                    <input type="number" id="motorcycle-price" value="25.00" min="0" step="0.50">
-                                </li>
-                                <li class="menu_inside">
-                                    <a href="#" class="menu_link menu_link--inside">Automóvil</a>
-                                    <input type="number" id="car-price" value="120.00" min="0" step="0.50">
-                                </li>
-                                <li class="menu_inside">
-                                    <a href="#" class="menu_link menu_link--inside">Camioneta</a>
-                                    <input type="number" id="truck-price" value="120.00" min="0" step="0.50">
-                                </li>
-                                <li class="menu_inside">
-                                    <a href="#" class="menu_link menu_link--inside">Autobús</a>
-                                    <input type="number" id="bus-price" value="150.00" min="0" step="0.50">
-                                </li>
-                            </ul>
-                        </li>
-                    </ul> 
-                </div>
-
-                <div class="nav-links">
-                    <a href="/">Inicio</a>
-                    <a href="#">Servicios</a>
-                    <a href="#">Acerca de</a>
-                    <a href="#">Contacto</a>
-                    <div class="profile-icon">
-                        <img src="{% static 'images/user-icon.png' %}" alt="Perfil">
+        <div class="container">
+            <div class="left-section">
+                
+                <div class="graph">
+                    <h2 >Accesos de Caseta #X</h2>
+                    <div>
+                        <div class="metric">
+                            <div class="metric-value">##</div>
+                            <div class="metric-label">Este mes</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">##</div>
+                            <div class="metric-label">Hoy</div>
+                        </div>
                     </div>
-                    
-                    <a href="{% url 'profile_admin' %}">Perfil</a>
+                    <div class="chart-container" style="height: 490px;">
+                        <iframe   
+                        style="height: 450px; width: 600px;"
+                        src="https://charts.mongodb.com/charts-project-0-nrhaall/embed/dashboards?id=67ce041b-8fce-422d-88ab-30a00d1331b2&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed">
+                        </iframe>
+                    </div>
+                    <button>Ver reporte detallado</button>
                 </div>
-            </nav>
-        </header>
-    </div>
+            </div>
 
-    <div class="head_container">
-        <h1>Bienvenido a Quick-Pass caseta #X</h1>
-        <p>Sistema de administración de casetas de peaje</p>
-    </div>
+            <div class="right-section">
+                <div class="card">
+                    <h2>Estado de la caseta #X</h2>
+                    <div class="status">
+                        <div class="status-indicator status-active"></div>
+                        <div>Sistema operativo</div>
+                    </div>
+                    <div class="status">
+                        <div class="status-indicator status-active"></div>
+                        <div>Conexión a la red</div>
+                    </div>
+                    <div class="status">
+                        <div class="status-indicator status-active"></div>
+                        <div>Lector QR</div>
+                    </div>
+                    <div class="status">
+                        <div class="status-indicator status-active"></div>
+                        <div>Cámara</div>
+                    </div>
+                    <button>Ver diagnóstico completo</button>
+                </div>
+            </div>
 
-    
-    <div class="container">
-        <div class="left-section">
-            <div class="graph">
-                <h2>Ganancias caseta #X</h2>
-                <div class="metric">
-                    <div class="metric-value">$3,250</div>
-                    <div class="metric-label">Este mes</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">$3,250</div>
-                    <div class="metric-label">Hoy</div>
-                </div>
-                <div class="chart-container">
-                    <img src="/api/placeholder/350/200" alt="Gráfico de ganancias" />
-                </div>
-                <button>Ver reporte detallado</button>
-            </div>
-            
-            <div class="graph">
-                <h2>Reportes y estadísticas</h2>
-                <div class="metric">
-                    <div class="metric-value">1,250</div>
-                    <div class="metric-label">Vehículos hoy</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">32,467</div>
-                    <div class="metric-label">Vehículos este mes</div>
-                </div>
-                <div class="chart-container">
-                    <img src="/api/placeholder/350/200" alt="Gráfico de tráfico" />
-                </div>
-                <button>Generar reporte</button>
-            </div>
         </div>
-    
-        <div class="right-section">
-            <div class="card">
-                <h2>Estado de la caseta #X</h2>
-                <div class="status">
-                    <div class="status-indicator status-active"></div>
-                    <div>Sistema operativo</div>
-                </div>
-                <div class="status">
-                    <div class="status-indicator status-active"></div>
-                    <div>Conexión a la red</div>
-                </div>
-                <div class="status">
-                    <div class="status-indicator status-active"></div>
-                    <div>Lector QR</div>
-                </div>
-                <div class="status">
-                    <div class="status-indicator status-active"></div>
-                    <div>Cámara</div>
-                </div>
-                <button>Ver diagnóstico completo</button>
-            </div>
-        </div>
-    </div>
-    <footer class="footer">
+    </main>
+
+    <footer>
         <p>© 2025 Quick-Pass Sistema de Gestión de Casetas. Todos los derechos reservados.</p>
     </footer>
 </body>

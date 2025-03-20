@@ -25,14 +25,14 @@ header {
 }
 
 .container {
-    background-color: #fff;
-    border-radius: 30px;
+    background-color: rgb(255, 255, 255, 0.6);
+    border-radius: 60px;
     box-shadow: 0 5px 15px rgb(from 0 0 0 15);
     position: relative;
     overflow: hidden;
-    width: 758px;
+    width: 900px;
     max-width: 100%;
-    min-height: 480px;
+    min-height: 580px;
 }
 .container input {
     width: 70%;
@@ -66,7 +66,7 @@ header {
     margin: 15px 0 10px;
 }
 .container button{ 
-    background-color: #512da8;
+    background-color: rgb(81, 45, 168);
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -83,12 +83,12 @@ header {
     border-color: #fff;
 }
 .container form{
-    background-color: #fff;
+    background-color: rgb(255, 255, 255. 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     padding: 0 40px;
     height: 100%;
 }
@@ -159,9 +159,9 @@ header {
     border-radius: 0 90px 90px 0;
 }
 .toggle{
-    background-color: #512daB;
+    background-color: rgb(81, 45, 171, 0.6);
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8 );
+    background: linear-gradient(to right, #368544, #512da8 );
     color: #fff;
     position: relative;
     left: -100%;
