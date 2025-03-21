@@ -51,7 +51,9 @@
 
                 <hr>
                 
-                <h3 class="subtitle">Básicos:</h3>
+                <form method="post" action="{% url 'profile_admin' %}">
+                    {% csrf_token %}
+                    <h3 class="subtitle">Básicos:</h3>
                 <div class="form-group">
                     <label for="firstname">Nombre</label>
                     <input type="text" id="name" name="name" placeholder="Nombre" value="{{ request.session.name }}">
@@ -83,7 +85,9 @@
                     </select>
                 </div>
                 
-                <button class="btn save-btn">Guardar</button>
+                <input type="hidden" name="actual_submit" value="1">
+                <button type="submit" class="btn save-btn">Guardar</button>
+                </form>
             </div>
             
             <!-- Sección de Foto -->

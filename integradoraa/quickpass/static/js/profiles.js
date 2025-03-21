@@ -149,3 +149,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Obtener la última sección activa desde localStorage
+    const activeSection = localStorage.getItem("activeSection");
+    
+    // Si hay una sección almacenada, activarla
+    if (activeSection) {
+        document.querySelectorAll(".content-section").forEach(section => {
+            section.classList.remove("active");
+        });
+        document.querySelectorAll(".menu-item").forEach(item => {
+            item.classList.remove("active");
+        });
+
+        document.getElementById(activeSection)?.classList.add("active");
+        document.querySelector(`[data-section="${activeSection}"]`)?.classList.add("active");
+    }
+
+    // Manejar el cambio de secciones y guardarlo en localStorage
+    document.querySelectorAll(".menu-item").forEach(item => {
+        item.addEventListener("click", function () {
+            const section = this.getAttribute("data-section");
+
+            // Remover clases activas
+            document.querySelectorAll(".content-section").forEach(section => {
+                section.classList.remove("active");
+            });
+            document.querySelectorAll(".menu-item").forEach(item => {
+                item.classList.remove("active");
+            });
+
+            // Activar la nueva sección
+            document.getElementById(section)?.classList.add("active");
+            this.classList.add("active");
+
+            // Guardar la sección activa en localStorage
+            localStorage.setItem("activeSection", section);
+        });
+    });
+});
