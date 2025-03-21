@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'quickpass.middleware.AuthRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'integradoraa.urls'
@@ -71,6 +72,14 @@ TEMPLATES = [
 
 
 WSGI_APPLICATION = 'integradoraa.wsgi.application'
+
+# Configuración de sesiones
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'  # Usa cookies firmadas
+SESSION_COOKIE_NAME = 'casetas_session'  # Nombre personalizado para la cookie
+SESSION_COOKIE_AGE = 1209600  # 2 semanas en segundos
+SESSION_COOKIE_SECURE = False  # Cambia a True en producción con HTTPS
+SESSION_COOKIE_HTTPONLY = True  # Previene acceso desde JavaScript
+SESSION_SAVE_EVERY_REQUEST = True  # Actualiza la cookie en cada petición
 
 
 # Database

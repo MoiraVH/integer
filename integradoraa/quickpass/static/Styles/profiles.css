@@ -16,8 +16,8 @@ body {
 
 .container {
     display: flex;
-    width: 90%;
-    max-width: 1000px;
+    width: 100%;
+    max-width: 1300px;
     height: 600px; /* Altura fija del container */
     background-color: white;
     border-radius: 8px;

@@ -31,15 +31,15 @@
         <div class="sidebar">
             <div class="profile-header">
                 <div class="profile-avatar">MV</div>
-                <h2 class="profile-name">Moira Villalobos</h2>
-                <p class="profile-view">Encargado de la caseta #X</p>
+                <h2 class="profile-name">Hola {{ request.session.name }}!</h2>
+                <p class="profile-view">Encargado de la caseta #{{ request.session.numCaseta }}</p>
             </div>
             
             <div class="menu">
                 <div class="menu-item active" data-section="profile">Perfil</div>
                 <div class="menu-item" data-section="photo">Foto</div>
                 <div class="menu-item" data-section="security">Seguridad de la cuenta</div>
-                <div class="menu-item" data-section="payment">Información de la caseta #X</div>
+                <div class="menu-item" data-section="payment">Información de la caseta #{{ request.session.numCaseta }}</div>
                 <div class="menu-item" data-section="close">Cerrar cuenta</div>
             </div>
         </div>
@@ -54,23 +54,23 @@
                 <h3 class="subtitle">Básicos:</h3>
                 <div class="form-group">
                     <label for="firstname">Nombre</label>
-                    <input type="text" id="name" name="name" placeholder="Nombre">
+                    <input type="text" id="name" name="name" placeholder="Nombre" value="{{ request.session.name }}">
                 </div>
                 
                 <div class="form-group">
                     <label for="lastname">Apellido</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Apellido">
+                    <input type="text" id="lastname" name="lastname" placeholder="Apellido" value="{{ request.session.lastname}}">
                 </div>
                 
                 <div class="form-group">
                     <label for="headline">Puesto</label>
-                    <input type="text" id="headline" placeholder="Puesto">
+                    <input type="text" id="headline" placeholder="Puesto" value="{{ request.session.puesto}}">
                     <div class="char-count">0/60</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="headline">Encargado de caseta #</label>
-                    <input type="text" id="headline" placeholder="Caseta">
+                <label for="headline">Encargado de caseta #{{ request.session.numCaseta }}</label>
+                    <input type="text" id="headline" placeholder="Caseta" value="{{ request.session.encargado }}">
                     <div class="char-count">0/60</div>
                 </div>
                 
@@ -79,7 +79,7 @@
                     <select id="language">
                         <option selected>Español (ES)</option>
                         <option>English (US)</option>
-                        <option>Français (FR)</option>
+                        <option>Français (FR)</option> 
                     </select>
                 </div>
                 
@@ -115,16 +115,16 @@
                 
                 <div class="form-group">
                     <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="Email">                
+                    <input type="email" id="email" name="email" placeholder="Email" value="{{ request.session.email}}">                
                 </div>
                 
                 <div class="form-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" placeholder="Contraseña">                    
+                    <input type="password" id="password" name="password" placeholder="Contraseña nueva" value="{{ request.session.password }}">                    
                     <br><br>
 
                     <label for="password">Confirma la nueva contraseña</label>
-                    <input type="password" id="confirmpass" name="confirm_password" placeholder="Confirma tu contraseña">
+                    <input type="password" id="confirmpass" name="confirm_password" placeholder="Confirma tu contraseña nueva" value="{{ request.session.password }}">
 
                     <button class="btn" style="margin-top: 10px;">Cambiar contraseña</button>
                 </div>
@@ -132,26 +132,59 @@
             </div>
             
             <div class="content-section" id="payment">
-                <h1>Información de la caseta #X</h1>1
+                <h1>Información de la caseta #{{ request.session.numCaseta }}</h1>
                 <p>Actualiza la información de la caseta</p>
-                <hr><br>
+                <br><br>
                 <!-- Contenido de casetas -->
-                 <div class="form-group">
-                    <label for="caseta">Número de caseta</label>
-                    <input type="text" id="caseta" name="caseta" placeholder="Número">
-
-                    <label for="ubicacion">Ubicación</label>
-                    <input type="text" id="ubicacion" name="ubicacion" placeholder="Ubicación">
-                 </div>
+                 <form method="post" action="{% url 'profile_admin' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <h3>Información de caseta</h3>
+                        <br><hr><br>
+                        <label for="caseta">Número de caseta</label>
+                        <input type="text" id="numCaseta" name="numCaseta" placeholder="Número" value="{{ request.session.numCaseta }}">
+                        <br><br>
+    
+                        <label for="ubicacion">Ubicación</label>
+                        <input type="text" id="ubicacion" name="ubicacion" placeholder="Ubicación" value="{{ request.session.ubicacion }}">
+                        <br><br>
+    
+                        <label for="estado">Esado</label>
+                        <input type="text" id="estado" name="estado" placeholder="Estado" value="{{ request.session.estado }}">
+                        <br><br>
+    
+                        <label for="telefono_caseta">Número telefónico</label>
+                        <input type="text" id="celCaseta" name="celCaseta" placeholder="Número" value="{{ request.session.celCaseta }}">
+    
+                        <hr><br><br>
+                        <h3>Encargado de la caseta</h3>
+                        <br><hr><br>
+                        <label for="encargado">Encargado</label>
+                        <input type="text" id="encargado" name="encargado" placeholder="Encargado" value="{{ request.session.encargado }}">
+                        <br><br>
+    
+                        <label for="controlE">Número de control del encargado</label>
+                        <input type="text" id="controlE" name="controlE" placeholder="Numero de control" value="{{ request.session.controlE }}">
+    
+                        <br><br>
+                        <input type="hidden" name="caseta_submit" value="1">
+                        <button type="submit" class="btn save-btn">Guardar</button>
+                     </div>
+                 </form>
             </div>
             
             <div class="content-section" id="close">
                 <h1>Cerrar cuenta</h1>
                 <p>Opciones para cerrar o eliminar tu cuenta</p>
-                <button class="btn" style="background-color: #d9534f;">Cerrar mi cuenta</button>
+                <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn" style="background-color: #d9534f;">Cerrar mi cuenta</button>
+                </form>
             </div>
+            
         </div>
     </div>
+    
 
     <script src="{% static 'js/profiles.js' %}"></script>
 </body>

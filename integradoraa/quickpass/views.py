@@ -2,10 +2,14 @@ import re
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib import messages as django_messages
-from .models import UserModel
+from .models import UserModel, Casetas
 
 
 def auth_view(request):
+
+    if 'user_id' in request.session:
+        return redirect('admin_dashboard')
+
     if request.method == "POST":
         if "login_submit" in request.POST:  # Inicio de sesión
             email = request.POST.get("email").strip()
@@ -16,9 +20,9 @@ def auth_view(request):
             if user:
                 request.session["user_id"] = str(user["_id"])
                 request.session["name"] = user["name"]
-                request.session["role"] = user["role"]  # Guardar el rol en la sesión
+                
                 django_messages.success(request, f"Bienvenido {user['name']}!")
-                return redirect('home')
+                return redirect('admin_dashboard')
             else:
                 django_messages.error(request, "Credenciales incorrectas.")
 
@@ -55,8 +59,12 @@ def auth_view(request):
 
 def logout_view(request):
     """Cierra la sesión del usuario."""
-    logout(request)
-    django_messages.success(request, "Has cerrado sesión correctamente.")
+    if 'user_id' in request.session:
+        request.session.flush()
+        request.session.clear_expired()
+
+    django_messages.success(request, "Sesión cerrada con éxito.")
+    
     return redirect("login")
 
 def home_view(request):
@@ -70,10 +78,36 @@ def profile_view(request):
     return render(request, "profile.html")
 
 def profile_admin_view(request):
+    if request.method == "POST" and "caseta_submit" in request.POST:
+        numCaseta = request.POST.get("numCaseta", "").strip()
+        ubicacion = request.POST.get("ubicacion", "").strip()
+        estado = request.POST.get("estado", "").strip()
+        celCaseta = request.POST.get("celCaseta", "").strip()
+        encargado = request.POST.get("encargado", "").strip()
+        controlE = request.POST.get("controlE", "").strip()
+        
+        try:
+            caseta = Casetas(numCaseta, ubicacion, estado, encargado, celCaseta, controlE)
+            caseta.save()
+            
+            # Guardar los datos en la sesión
+            request.session['numCaseta'] = numCaseta
+            request.session['ubicacion'] = ubicacion
+            request.session['estado'] = estado
+            request.session['celCaseta'] = celCaseta
+            request.session['encargado'] = encargado
+            request.session['controlE'] = controlE
+            
+            django_messages.success(request, "Registro de caseta exitoso")
+            return redirect("profile_admin")
+        except Exception as e:
+            django_messages.error(request, f"Error al guardar la caseta: {e}")
+    
     return render(request, "profile_admin.html")
 
 def about_us_view(request):
     return render(request, "about_us.html")
 
 def admin_dashboard_view(request):
+
     return render(request, "admin_dashboard.html")
