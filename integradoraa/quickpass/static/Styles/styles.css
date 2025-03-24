@@ -2,6 +2,7 @@
 
 /* Ajustes para el contenedor de login para que se acomode con el navbar */
 body {
+    background-image: url("{% static 'images/carretera.jpg' %}");
     background-color: #f6f5f7;
     display: flex;
     flex-direction: column;
@@ -9,7 +10,6 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding-top: 70px; /* Espacio para el navbar */
 }
 
 
@@ -25,7 +25,7 @@ header {
 }
 
 .container {
-    background-color: rgb(255, 255, 255, 0.6);
+    background-color: rgb(255, 255, 255);
     border-radius: 60px;
     box-shadow: 0 5px 15px rgb(from 0 0 0 15);
     position: relative;
@@ -46,7 +46,7 @@ header {
     color: #333;
 }
 .container input::placeholder {
-    color: rgba(0, 0, 0, 0.5); /* Color tenue para el placeholder */
+    color: rgba(0, 0, 0); /* Color tenue para el placeholder */
     text-indent: 5%;
 }
 
@@ -66,7 +66,7 @@ header {
     margin: 15px 0 10px;
 }
 .container button{ 
-    background-color: rgb(81, 45, 168);
+    background-color: rgb(27, 104, 85);
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -83,7 +83,7 @@ header {
     border-color: #fff;
 }
 .container form{
-    background-color: rgb(255, 255, 255. 0.6);
+    background-color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -161,7 +161,7 @@ header {
 .toggle{
     background-color: rgb(81, 45, 171, 0.6);
     height: 100%;
-    background: linear-gradient(to right, #368544, #512da8 );
+    background: linear-gradient(to right, #368544, #1d361d );
     color: #fff;
     position: relative;
     left: -100%;

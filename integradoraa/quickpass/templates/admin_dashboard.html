@@ -20,43 +20,39 @@
                 <a href="/">QuickPass</a>
             </div>
 
-            <div>
-                <ul class="menu_links">
-
-                    <li class="menu_item  menu_item--show">
-                        <a href="#" class="menu_link">Acciones rápidas <img src="{% static 'assets/arrow.svg' %}" class="menu_arrow"> </a>
-                        
-                        <ul class="menu_nesting">
-                            <li class="menu_inside">
-                                <a href="#" class="menu_link menu_link--inside">Imprimir reporte diario</a>
-                            </li>
-                            <li class="menu_inside">
-                                <a href="#" class="menu_link menu_link--inside">Solicitar mantenimiento</a>
-                            </li>
-                            <li class="menu_inside">
-                                <a href="#" class="menu_link menu_link--inside">Notificar recolleción de pago</a>
-                            </li>
-                            <li class="menu_inside">
-                                <a href="#" class="menu_link menu_link--inside">Cerrar turno</a>
-                            </li>
-                            <li class="menu_inside">
-                                <a href="#" class="menu_link menu_link--inside" style="color: red;">Reporte de emergencia</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul> 
-            </div>
-
+            
             <div class="nav-links">
-                <a href="/">Inicio</a>
-                <a href="#">Servicios</a>
-                <a href="#">Acerca de</a>
-                <a href="#">Contacto</a>
-                <div class="profile-icon">
-                    <img src="{% static 'images/user-icon.png' %}" alt="Perfil">
+                <div>
+                    <ul class="menu_links" >
+    
+                        <li class="menu_item  menu_item--show">
+                            <a href="#" class="menu_link">Acciones rápidas <img src="{% static 'assets/arrow.svg' %}" class="menu_arrow"> </a>
+                            
+                            <ul class="menu_nesting">
+                                <li class="menu_inside">
+                                    <a href="#" class="menu_link menu_link--inside">Imprimir reporte diario</a>
+                                </li>
+                                <li class="menu_inside">
+                                    <a href="#" class="menu_link menu_link--inside">Solicitar mantenimiento</a>
+                                </li>
+                                <li class="menu_inside">
+                                    <a href="#" class="menu_link menu_link--inside">Notificar recolleción de pago</a>
+                                </li>
+                                <li class="menu_inside">
+                                    <a href="{% url 'logout' %}" class="menu_link menu_link--inside">Cerrar turno</a>
+                                </li>
+                                <li class="menu_inside">
+                                    <a href="#" class="menu_link menu_link--inside" style="color: red;">Reporte de emergencia</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul> 
                 </div>
+
+                <a href="{% url 'about_us' %}">Acerca de</a>
                 
                 <a href="{% url 'profile_admin' %}">Perfil</a>
+                <a href="{% url 'logout' %}" style="color: rgb(221, 150, 150);">Cerrar sesión</a>
             </div>
         </nav>
     </header>
@@ -71,49 +67,67 @@
             <div class="left-section">
                 
                 <div class="graph">
-                    <h2 >Accesos de Caseta #{{ request.session.numCaseta }}</h2>
-                    <div>
-                        <div class="metric">
-                            <div class="metric-value">{{ accesos_mes }}</div>
-                            <div class="metric-label">Aprobados este mes</div>
+                    <div class="info-section">
+                        <div>
+                            <h2 >Accesos de Caseta #{{ request.session.numCaseta }}</h2><br>
+                            
+                            <div class="metric">
+                                <div class="metric-value">{{ accesos_mes }}</div>
+                                <div class="metric-label" style="margin-right: 5px;">Aprobados este mes</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">{{ accesos_hoy }}</div>
+                                <div class="metric-label" style="margin-right: 15px;">Aprobados hoy</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value" style="color: red;">{{ accesos_denegados_mes }}</div>
+                                <div class="metric-label" style="margin-right: 5px;">Denegados este mes</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value" style="color: red;">{{ accesos_denegados_dia }}</div>
+                                <div class="metric-label" style="margin-right: 15px;">Denegados hoy</div>
+                            </div>
                         </div>
-                        <div class="metric">
-                            <div class="metric-value">{{ accesos_hoy }}</div>
-                            <div class="metric-label">Aprobados hoy</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value" style="color: red;">{{ accesos_denegados_mes }}</div>
-                            <div class="metric-label" >Denegados este mes</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value" style="color: red;">{{ accesos_denegados_dia }}</div>
-                            <div class="metric-label">Denegados hoy</div>
-                        </div>
-                        <hr>
 
-                        <div class="metric">
-                            <div class="metric-value">{{ ingresos_hoy }}</div>
-                            <div class="metric-label">Ingresos del día de hoy</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">{{ ingresos_mes }}</div>
-                            <div class="metric-label">Ingresos del mes</div>
-                        </div>
-                        
+                        <div>
+                            <h2>Pagos de Caseta #{{ request.session.numCaseta }}</h><br><br>
 
+                            <div class="metric">
+                                <div class="metric-value" style="color: green;">{{ ingresos_hoy }}</div>
+                                <div class="metric-label" style="margin-right: 15px;">Ingresos del día de hoy</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value" style="color: green;">{{ ingresos_mes }}</div>
+                                <div class="metric-label" style="margin-right: 15px;">Ingresos de este mes</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="chart-container" style="height: 490px;">
-                        <iframe   
-                        style="height: 450px; width: 600px;"
-                        src="https://charts.mongodb.com/charts-project-0-nrhaall/embed/charts?id=fa19a2d6-4772-4e58-bfb0-c264f84ed78d&maxDataAge=3600&theme=light&autoRefresh=true">
-                        </iframe>
+
+                    <br><br><hr><br><br>
+
+                    <div id="overlay"></div>
+
+                    <div style="align-items: center;"><h2 style="align-items: center; margin-bottom: 30px ;">Gráficos de accesos</h2></div>
+    
+                    <div class="charts-grid">
+                        <!-- Gráfico 1 -->
+                        <div class="chart-container" onclick="expandChart(this)">
+                            <div class="close-btn">✕</div>
+                            <iframe 
+                                src="https://charts.mongodb.com/charts-project-0-nrhaall/embed/charts?id=fa19a2d6-4772-4e58-bfb0-c264f84ed78d&maxDataAge=3600&theme=light&autoRefresh=true">
+                            </iframe>
+                        </div>
+
+                        <!-- Gráfico 2 -->
+                        <div class="chart-container" onclick="expandChart(this)">
+                            <div class="close-btn">✕</div>
+                            <iframe 
+                                src="https://charts.mongodb.com/charts-project-0-nrhaall/embed/charts?id=e5b7d2a3-6f44-40c8-aed0-7023cbf0c248&maxDataAge=3600&theme=light&autoRefresh=true">
+                            </iframe>
+                        </div>
                     </div>
-                    <div class="chart-container" style="height: 490px;">
-                        <iframe   
-                        style="height: 450px; width: 600px;"
-                        src="https://charts.mongodb.com/charts-project-0-nrhaall/embed/charts?id=e5b7d2a3-6f44-40c8-aed0-7023cbf0c248&maxDataAge=3600&theme=light&autoRefresh=true">
-                        </iframe>
-                    </div>
+                    <br><br>
+                    
                     <a href="{% url 'descargar_reporte_accesos' %}" class="btn btn-success">
                         📥 Descargar Reporte del Mes
                     </a>
@@ -158,9 +172,6 @@
 
                     <label for="bus-price">Autobús</label>
                     <input type="number" id="bus-price" value="150.00" min="0" step="0.50"><br><br>
-
-                    <br>
-                    <button>Ver diagnóstico completo</button>
                 </div>
             </div>
 
@@ -174,5 +185,7 @@
     <footer>
         <p>© 2025 Quick-Pass Sistema de Gestión de Casetas. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="{% static 'js/admin.js' %}"></script>
 </body>
 </html>

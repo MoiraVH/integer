@@ -13,6 +13,8 @@ h1 {
     min-height: 100vh;
     padding: 20px; /* Añade espacio interno */
     box-sizing: border-box; /* Incluye padding en el ancho total */
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .left-section {
@@ -23,6 +25,14 @@ h1 {
     padding-right: 20px;
     /* Asegura que crezca con el contenido */
     height: auto; 
+}
+
+.info-section{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 120px;
+    margin-right: 120px;
+    margin-top: 30px;
 }
 
 iframe{
@@ -111,9 +121,65 @@ iframe{
     background-color: var(--danger-color);
 }
 
+.charts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
 .chart-container {
-    height: 600px;
-    margin-top: 20px;
+    position: relative;
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.chart-container.expand {
+    width: 90vw;
+    height: 80vh;
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    z-index: 100;
+}
+
+.chart-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.chart-container.expand iframe {
+    pointer-events: none; /* Evita interacción dentro del iframe expandido */
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: none;
+}
+
+.chart-container.expand .close-btn {
+    display: block;
 }
 
 button {
@@ -211,7 +277,7 @@ input {
 }
 
 .menu_link{
-    color: wheat;
+    color: white;
     text-decoration: none;
     padding: 0 30px;
     display: flex;

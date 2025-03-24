@@ -69,7 +69,7 @@ def logout_view(request):
 
     django_messages.success(request, "Sesión cerrada con éxito.")
     
-    return redirect("login")
+    return redirect("start")
 
 def home_view(request):
     return render(request, "home.html")
@@ -213,4 +213,14 @@ def descargar_reporte_accesos(request):
             acceso.get("numCaseta", "N/A")
         ])
 
+    return response
+
+from django.http import FileResponse
+from django.conf import settings
+import os
+
+def download_apk(request):
+    apk_path = os.path.join(settings.MEDIA_ROOT, 'apps', 'quickpass.apk')
+    response = FileResponse(open(apk_path, 'rb'))
+    response['Content-Disposition'] = 'attachment; filename="quickpass.apk"'
     return response

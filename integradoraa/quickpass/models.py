@@ -98,6 +98,7 @@ class Casetas:
             
         except Exception as e:
             raise Exception(f"Error al guardar la caseta en MongoDB: {e}")
+        
 class AccesosStats:
     def __init__(self, caseta_num=None):
         self.accesos_collection = db['accesos']
